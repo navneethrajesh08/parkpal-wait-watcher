@@ -47,7 +47,7 @@ export function FileUploader({ onDataLoaded, hasData }: FileUploaderProps) {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 mt-4">
+    <div>
       <div
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}

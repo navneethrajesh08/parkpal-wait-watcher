@@ -15,11 +15,6 @@ export function RideTile({ ride }: RideTileProps) {
   const description = rideDescriptions[ride.name] || null;
   const canFlip = ride.available;
 
-  const handleFlip = () => {
-    if (!canFlip) return;
-    setFlipped((f) => !f);
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -28,16 +23,17 @@ export function RideTile({ ride }: RideTileProps) {
       whileHover={canFlip ? { scale: AppConfig.animation.hoverScale } : {}}
       className="flip-container w-full"
       style={{ minHeight: 220 }}
+      onMouseEnter={() => canFlip && setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
     >
       <div
         className={`flip-inner relative w-full ${flipped ? "flipped" : ""}`}
-        onClick={handleFlip}
         style={{
           cursor: canFlip ? "pointer" : "default",
           minHeight: 220,
         }}
       >
-        {/* FRONT */}
+        {/* FRONT — Name + Description */}
         <div
           className={`flip-front absolute inset-0 park-card p-4 flex flex-col ${
             !ride.available ? "park-card-unavailable" : ""
@@ -51,11 +47,16 @@ export function RideTile({ ride }: RideTileProps) {
           </div>
 
           {ride.available ? (
-            <div className="flex-1 flex items-end">
-              <MiniChart
-                data={ride.hourlyData}
-                currentHourIndex={ride.currentHourIndex}
-              />
+            <div className="flex-1 flex items-center">
+              {description ? (
+                <p className="text-muted-foreground text-sm font-semibold">
+                  {description}
+                </p>
+              ) : (
+                <p className="text-muted-foreground text-xs italic">
+                  Hover to see wait times
+                </p>
+              )}
             </div>
           ) : (
             <div className="flex-1 flex items-center justify-center">
@@ -64,15 +65,9 @@ export function RideTile({ ride }: RideTileProps) {
               </p>
             </div>
           )}
-
-          {description && ride.available && (
-            <p className="text-[10px] text-muted-foreground mt-2 truncate" title={description}>
-              {description}
-            </p>
-          )}
         </div>
 
-        {/* BACK */}
+        {/* BACK — Chart */}
         {canFlip && (
           <div className="flip-back absolute inset-0 park-card p-4 flex flex-col">
             <div className="flex items-start justify-between mb-1">
@@ -82,12 +77,6 @@ export function RideTile({ ride }: RideTileProps) {
               <StatusBadge available={ride.available} />
             </div>
 
-            {description && (
-              <p className="text-xs text-muted-foreground mb-2">
-                {description}
-              </p>
-            )}
-
             <div className="flex-1 flex items-end">
               <DetailedChart
                 data={ride.hourlyData}
@@ -96,7 +85,7 @@ export function RideTile({ ride }: RideTileProps) {
             </div>
 
             <p className="text-[10px] text-muted-foreground mt-2 text-center">
-              Tap to flip back
+              Hover off to flip back
             </p>
           </div>
         )}
