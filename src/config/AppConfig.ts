@@ -5,7 +5,7 @@ export const AppConfig = {
   backButton: {
     enabled: true,
     label: "Back",
-    targetUrl: "https://example.com",
+    targetUrl: "https://park-wait-radar.lovable.app",
     openInNewTab: false,
   },
   animation: {
