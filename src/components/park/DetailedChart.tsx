@@ -73,12 +73,12 @@ export function DetailedChart({ data, currentHourIndex }: DetailedChartProps) {
                 height={barH}
                 rx={barWidth / 2}
                 ry={barWidth / 2}
-                fill={
+              fill={
                   isCurrent
                     ? "hsl(var(--park-bar-current))"
                     : isHovered
-                    ? "hsl(var(--primary))"
-                    : "hsl(var(--park-bar-default))"
+                    ? "hsl(var(--accent))"
+                    : "hsl(var(--primary) / 0.6)"
                 }
                 opacity={isCurrent || isHovered ? 1 : 0.7}
                 style={{ transition: "opacity 0.15s, fill 0.15s" }}
@@ -91,7 +91,7 @@ export function DetailedChart({ data, currentHourIndex }: DetailedChartProps) {
                 fill={
                   isCurrent
                     ? "hsl(var(--park-bar-current))"
-                    : "hsl(var(--park-dot))"
+                    : "hsl(var(--primary) / 0.35)"
                 }
               />
               {/* Label */}
@@ -110,13 +110,13 @@ export function DetailedChart({ data, currentHourIndex }: DetailedChartProps) {
               {/* Tooltip on hover */}
               {isHovered && (
                 <>
-                  <rect
+                   <rect
                     x={x + barWidth / 2 - 16}
                     y={y - 22}
                     width={32}
                     height={18}
                     rx={4}
-                    fill="hsl(var(--foreground))"
+                    fill="hsl(var(--primary))"
                   />
                   <text
                     x={x + barWidth / 2}
@@ -124,7 +124,7 @@ export function DetailedChart({ data, currentHourIndex }: DetailedChartProps) {
                     textAnchor="middle"
                     fontSize="9"
                     fontWeight="700"
-                    fill="hsl(var(--background))"
+                    fill="hsl(var(--primary-foreground))"
                     fontFamily="Nunito, sans-serif"
                   >
                     {d.avgWait}m
