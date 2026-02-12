@@ -35,35 +35,31 @@ export function RideTile({ ride }: RideTileProps) {
       >
         {/* FRONT — Name + Description */}
         <div
-          className={`flip-front absolute inset-0 park-card p-4 flex flex-col ${
+          className={`flip-front absolute inset-0 park-card p-4 flex flex-col items-center justify-center text-center ${
             !ride.available ? "park-card-unavailable" : ""
           }`}
         >
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="font-extrabold text-sm text-foreground leading-tight pr-2">
-              {ride.name}
-            </h3>
-            <StatusBadge available={ride.available} />
-          </div>
+          <StatusBadge available={ride.available} />
+          <h3 className="font-extrabold text-base text-foreground leading-tight mt-2">
+            {ride.name}
+          </h3>
 
           {ride.available ? (
-            <div className="flex-1 flex items-center">
+            <>
               {description ? (
-                <p className="text-muted-foreground text-sm font-semibold">
+                <p className="text-muted-foreground text-sm font-semibold mt-2 px-2">
                   {description}
                 </p>
               ) : (
-                <p className="text-muted-foreground text-xs italic">
+                <p className="text-muted-foreground text-xs italic mt-2">
                   Hover to see wait times
                 </p>
               )}
-            </div>
+            </>
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-muted-foreground text-xs font-semibold">
-                Unavailable currently
-              </p>
-            </div>
+            <p className="text-muted-foreground text-xs font-semibold mt-2">
+              Unavailable currently
+            </p>
           )}
         </div>
 
