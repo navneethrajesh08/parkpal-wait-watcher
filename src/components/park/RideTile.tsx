@@ -39,32 +39,30 @@ export function RideTile({ ride }: RideTileProps) {
             !ride.available ? "park-card-unavailable" : ""
           }`}
         >
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="font-extrabold text-sm text-foreground leading-tight pr-2">
-              {ride.name}
-            </h3>
+          <div className="flex items-end justify-end">
             <StatusBadge available={ride.available} />
           </div>
 
-          {ride.available ? (
-            <div className="flex-1 flex items-center">
-              {description ? (
-                <p className="text-muted-foreground text-sm font-semibold">
+          <div className="flex-1 flex flex-col items-center justify-center text-center gap-2">
+            <h3 className="font-extrabold text-lg text-foreground leading-tight">
+              {ride.name}
+            </h3>
+            {ride.available ? (
+              description ? (
+                <p className="text-muted-foreground text-xs font-semibold px-2">
                   {description}
                 </p>
               ) : (
                 <p className="text-muted-foreground text-xs italic">
                   Hover to see wait times
                 </p>
-              )}
-            </div>
-          ) : (
-            <div className="flex-1 flex items-center justify-center">
+              )
+            ) : (
               <p className="text-muted-foreground text-xs font-semibold">
                 Unavailable currently
               </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* BACK — Chart */}
