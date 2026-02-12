@@ -47,7 +47,7 @@ export function MiniChart({ data, currentHourIndex }: MiniChartProps) {
                 fill={
                   isCurrent
                     ? "hsl(var(--park-bar-current))"
-                    : "hsl(var(--primary) / 0.5)"
+                    : "hsl(var(--park-bar-default))"
                 }
                 opacity={isCurrent ? 1 : 0.7}
               />
@@ -59,7 +59,7 @@ export function MiniChart({ data, currentHourIndex }: MiniChartProps) {
                 fill={
                   isCurrent
                     ? "hsl(var(--park-bar-current))"
-                    : "hsl(var(--primary) / 0.35)"
+                    : "hsl(var(--park-dot))"
                 }
               />
               {/* Label */}
