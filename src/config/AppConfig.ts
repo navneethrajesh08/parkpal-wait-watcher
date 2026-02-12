@@ -1,7 +1,7 @@
 export const AppConfig = {
   parkName: "PortAventura World",
   headerTitle: "Skip the Wait at PortAventura World",
-  headerSubtitle: "Live waiting times",
+  headerSubtitle: "Average Wait Times",
   backButton: {
     enabled: true,
     label: "Back",
