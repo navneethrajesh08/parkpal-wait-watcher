@@ -40,7 +40,7 @@ export function RideTile({ ride }: RideTileProps) {
           onLoad={() => setImgLoaded(true)}
           onError={() => setImgError(true)}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-            imgLoaded ? "opacity-50" : "opacity-0"
+            imgLoaded ? "opacity-75" : "opacity-0"
           }`}
           style={{ filter: "blur(2px)" }}
         />
